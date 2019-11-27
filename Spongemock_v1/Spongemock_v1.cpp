@@ -13,6 +13,7 @@ int main()
 
 	while(true)
 	{
+		std::cout << "\n-------------\n";
 		std::cout << "Insert text to be mocked (\"exit\" to stop): ";
 		std::getline(std::cin, input);
 
@@ -21,9 +22,10 @@ int main()
 
 		mocked = spongemock_txt(input);
 
-		std::cout << "\nSpongemock text: " << mocked << "\n";
+		std::cout << "Spongemock text: " << mocked << "\n";
 		clipboard_copy(mocked);
 		std::cout << "Copied!\n";
+		std::cout << "-------------\n";
 	}
 
 	return 0;
