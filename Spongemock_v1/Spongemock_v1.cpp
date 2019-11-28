@@ -1,15 +1,16 @@
+#include <cctype>
+
 #include <iostream>
 #include <string>
-#include <cctype>
+
 #include <Windows.h>
 
-std::string spongemock_txt(std::string& input);
+void spongemock_txt(std::string& input);
 void clipboard_copy(const std::string& input); // Copies input to Clipboard
 
 int main()
 {
 	std::string input;
-	std::string mocked;
 
 	while (true)
 	{
@@ -20,10 +21,10 @@ int main()
 		if (input == "exit")
 			break;
 
-		mocked = spongemock_txt(input);
+		spongemock_txt(input);
 
-		std::cout << "Spongemock text: " << mocked << "\n";
-		clipboard_copy(mocked);
+		std::cout << "Spongemock text: " << input << "\n";
+		clipboard_copy(input);
 		std::cout << "Copied!\n";
 		std::cout << "-------------\n";
 	}
@@ -31,7 +32,7 @@ int main()
 	return 0;
 }
 
-std::string spongemock_txt(std::string& input)
+void spongemock_txt(std::string& input)
 {
 	for (auto i = 0; i < input.length(); i++)
 	{
@@ -45,8 +46,6 @@ std::string spongemock_txt(std::string& input)
 			input[i] = std::tolower(input[i]);
 		}
 	}
-
-	return input;
 }
 
 void clipboard_copy(const std::string& input)
