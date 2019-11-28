@@ -3,15 +3,15 @@
 #include <cctype>
 #include <Windows.h>
 
-std::string spongemock_txt(std::string input);
-void clipboard_copy(std::string input); // Copies input to Clipboard
+std::string spongemock_txt(std::string& input);
+void clipboard_copy(const std::string& input); // Copies input to Clipboard
 
 int main()
 {
 	std::string input;
 	std::string mocked;
 
-	while(true)
+	while (true)
 	{
 		std::cout << "\n-------------\n";
 		std::cout << "Insert text to be mocked (\"exit\" to stop): ";
@@ -31,27 +31,27 @@ int main()
 	return 0;
 }
 
-std::string spongemock_txt(std::string input)
+std::string spongemock_txt(std::string& input)
 {
-	for (size_t i = 0; i < input.length(); i++)
+	for (auto i = 0; i < input.length(); i++)
 	{
 		if (i % 2 == 0)
 		{
-			input[i] = std::tolower(input[i]);
+			input[i] = std::toupper(input[i]);
 		}
 
 		else
 		{
-			input[i] = std::toupper(input[i]);
+			input[i] = std::tolower(input[i]);
 		}
 	}
 
 	return input;
 }
 
-void clipboard_copy(std::string input)
+void clipboard_copy(const std::string& input)
 {
-	char const* output = input.data();
+	const char* output = input.data();
 	const size_t len = strlen(output) + 1;
 
 	HGLOBAL hMem = GlobalAlloc(GMEM_MOVEABLE, len);
